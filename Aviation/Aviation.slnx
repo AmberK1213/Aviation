@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Aviation.Ai/Aviation.Ai.pyproj" Type="888888a0-9f3d-457c-b088-3a5042f75d52" Id="79231a8d-bf32-4391-bdfc-4741f7df59ce" />
+  <Project Path="Aviation.Api/Aviation.Api.csproj" />
+  <Project Path="Aviation.Application/Aviation.Application.csproj" Id="0e276772-deb9-4e31-9127-b22aecf9d191" />
+  <Project Path="Aviation.Domain/Aviation.Domain.csproj" />
+  <Project Path="Aviation.Infrastructure/Aviation.Infrastructure.csproj" Id="1a80c287-bddc-4348-9eb8-8c3fbdadab9e" />
+  <Project Path="Aviation/Aviation.csproj" />
+</Solution>
