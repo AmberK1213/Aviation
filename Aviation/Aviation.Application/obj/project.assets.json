@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "Aviation.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Aviation.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Aviation.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Aviation.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Aviation.Domain/Aviation.Domain.csproj",
+      "msbuildProject": "../Aviation.Domain/Aviation.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "Aviation.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\amber\\.nuget\\packages\\": {},
@@ -39,7 +58,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj": {
+              "projectPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
