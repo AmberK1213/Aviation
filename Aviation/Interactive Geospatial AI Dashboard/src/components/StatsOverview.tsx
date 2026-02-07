@@ -1,13 +1,14 @@
 import { Bird, TrendingUp, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
-import { FilterState } from '../App';
+import { FilterState, NestingSite, Detection } from '../types';
 import { nestingSites } from '../data/mockData';
 
 interface StatsOverviewProps {
   filters: FilterState;
+  sites: NestingSite[];
+  detections: Detection[];
 }
-
-export function StatsOverview({ filters }: StatsOverviewProps) {
-  const filteredSites = nestingSites.filter(site => {
+export function StatsOverview({ filters, sites, detections }: StatsOverviewProps) {
+  const filteredSites = sites.filter(site => {
     if (filters.species.length > 0 && !filters.species.includes(site.species)) return false;
     if (filters.habitat.length > 0 && !filters.habitat.includes(site.habitat)) return false;
     if (filters.priority.length > 0 && !filters.priority.includes(site.priority)) return false;

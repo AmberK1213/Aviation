@@ -1,17 +1,19 @@
 import { useState } from 'react';
-import { FilterState, NestingSite } from '../App';
+import { FilterState, NestingSite, Detection } from '../types';
 import { nestingSites } from '../data/mockData';
 import { Camera, CheckCircle, AlertCircle, HelpCircle, MapPin, Maximize2 } from 'lucide-react';
 
 interface DetectionGalleryProps {
   filters: FilterState;
   onSiteSelect: (site: NestingSite) => void;
+  sites: NestingSite[];
+  detections: Detection[];
 }
 
-export function DetectionGallery({ filters, onSiteSelect }: DetectionGalleryProps) {
+export function DetectionGallery({ filters, onSiteSelect, sites, detections }: DetectionGalleryProps) {
   const [selectedDetection, setSelectedDetection] = useState<NestingSite | null>(null);
 
-  const filteredSites = nestingSites.filter(site => {
+  const filteredSites = sites.filter(site => {
     if (filters.species.length > 0 && !filters.species.includes(site.species)) return false;
     if (filters.habitat.length > 0 && !filters.habitat.includes(site.habitat)) return false;
     if (filters.priority.length > 0 && !filters.priority.includes(site.priority)) return false;

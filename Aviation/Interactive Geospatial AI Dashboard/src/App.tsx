@@ -5,29 +5,9 @@ import { DetectionGallery } from './components/DetectionGallery';
 import { FilterControls } from './components/FilterControls';
 import { StatsOverview } from './components/StatsOverview';
 import { BarChart3, Map, Camera } from 'lucide-react';
-
-export interface NestingSite {
-  id: string;
-  lat: number;
-  lng: number;
-  species: string;
-  abundance: number;
-  priority: 'high' | 'medium' | 'low';
-  habitat: string;
-  lastSurveyed: string;
-  confidence: number;
-  verificationStatus: 'verified' | 'needs-review' | 'unverified';
-  detectionType: 'nest-colony' | 'individual-nests' | 'roosting-site';
-  imageId?: string;
-}
-
-export interface FilterState {
-  species: string[];
-  habitat: string[];
-  priority: string[];
-  minAbundance: number;
-  verificationStatus: string[];
-}
+import { NestingSite, FilterState } from './types';
+import { useSites } from './hooks/useSites';
+import { useDetections } from './hooks/useDetections';
 
 export default function App() {
   const [selectedSite, setSelectedSite] = useState<NestingSite | null>(null);
@@ -39,6 +19,12 @@ export default function App() {
     verificationStatus: [],
   });
   const [view, setView] = useState<'detections' | 'analytics' | 'map'>('detections');
+  const { sites, loading: sitesLoading } = useSites();
+  const { detections, loading: detectionsLoading } = useDetections();
+
+  if (sitesLoading || detectionsLoading) {
+    return <div>Loading data...</div>;
+  }
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
@@ -93,26 +79,28 @@ export default function App() {
       </header>
 
       {/* Stats Overview */}
-      <StatsOverview filters={filters} />
+      <StatsOverview filters={filters} sites={sites} detections={detections} />
 
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left Sidebar - Filters */}
         <div className="w-80 bg-white border-r border-gray-200 overflow-y-auto">
-          <FilterControls filters={filters} setFilters={setFilters} />
+          <FilterControls filters={filters} setFilters={setFilters} sites={sites} detections={detections} />
         </div>
 
         {/* Main View */}
         <div className="flex-1 overflow-auto">
           {view === 'detections' ? (
-            <DetectionGallery filters={filters} onSiteSelect={setSelectedSite} />
+            <DetectionGallery filters={filters} onSiteSelect={setSelectedSite} sites={sites} detections={detections} />
           ) : view === 'analytics' ? (
-            <AnalyticsDashboard filters={filters} onSiteSelect={setSelectedSite} />
+            <AnalyticsDashboard filters={filters} onSiteSelect={setSelectedSite} sites={sites} detections={detections} />
           ) : (
             <MapView 
               filters={filters} 
               selectedSite={selectedSite}
               onSiteSelect={setSelectedSite}
+              sites={sites}
+              detections={detections}
             />
           )}
         </div>

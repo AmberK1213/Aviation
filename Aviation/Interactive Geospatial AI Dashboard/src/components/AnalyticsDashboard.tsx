@@ -1,4 +1,4 @@
-import { FilterState, NestingSite } from '../App';
+import { FilterState, NestingSite, Detection } from '../types';
 import { SpeciesDistribution } from './analytics/SpeciesDistribution';
 import { TemporalTrends } from './analytics/TemporalTrends';
 import { HabitatAnalysis } from './analytics/HabitatAnalysis';
@@ -11,6 +11,8 @@ import { SpeciesCooccurrence } from './analytics/SpeciesCooccurrence';
 interface AnalyticsDashboardProps {
   filters: FilterState;
   onSiteSelect: (site: NestingSite) => void;
+  sites: NestingSite[];
+  detections: Detection[];
 }
 
 export function AnalyticsDashboard({ filters, onSiteSelect }: AnalyticsDashboardProps) {

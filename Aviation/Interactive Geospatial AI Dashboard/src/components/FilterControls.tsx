@@ -1,13 +1,16 @@
 import { Filter, X } from 'lucide-react';
-import { FilterState } from '../App';
+import { FilterState, NestingSite, Detection } from '../types';
 import { SPECIES, HABITATS } from '../data/mockData';
 
 interface FilterControlsProps {
   filters: FilterState;
   setFilters: (filters: FilterState) => void;
+  sites: NestingSite[];
+  detections: Detection[];
 }
 
-export function FilterControls({ filters, setFilters }: FilterControlsProps) {
+
+export function FilterControls({ filters, setFilters, sites, detections }: FilterControlsProps) {
   const toggleFilter = (category: keyof FilterState, value: string) => {
     const currentValues = filters[category] as string[];
     const newValues = currentValues.includes(value)
