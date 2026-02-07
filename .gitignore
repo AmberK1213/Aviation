@@ -4,3 +4,19 @@
 
 /.vs
 /Aviation/.vs
+/Aviation/Aviation/bin/Debug/net8.0
+/Aviation/Aviation/obj/Debug/net8.0
+/Aviation/Aviation.Api/bin/Debug/net8.0
+/Aviation/Aviation.Api/obj/Debug/net8.0/EndpointInfo
+/Aviation/Aviation.Api/obj/Debug/net8.0/ref
+/Aviation/Aviation.Api/obj/Debug/net8.0/refint
+*.json
+/Aviation/Aviation.Api/obj/Debug/net8.0/Aviation.Api.AssemblyInfo.cs
+/Aviation/Aviation.Api/obj/Debug/net8.0/Aviation.Api.AssemblyInfoInputs.cache
+/Aviation/Aviation.Api/obj/Debug/net8.0/rpswa.dswa.cache.json
+/Aviation/Aviation.Api/obj/Debug/net8.0
+/Aviation/Aviation.Application/bin/Debug/net8.0
+/Aviation/Aviation.Application/obj/Debug/net8.0
+/Aviation/Aviation.Domain/bin/Debug/net8.0
+/Aviation/Aviation.Domain/obj/Debug/net8.0
+/Aviation/Aviation.Infrastructure
