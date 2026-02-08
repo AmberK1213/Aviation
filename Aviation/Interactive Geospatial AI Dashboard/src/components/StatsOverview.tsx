@@ -1,6 +1,5 @@
-import { Bird, TrendingUp, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
+import { Bird, TrendingUp, MapPin, CheckCircle, Eye, Layers } from 'lucide-react';
 import { FilterState, NestingSite, Detection } from '../types';
-import { nestingSites } from '../data/mockData';
 
 interface StatsOverviewProps {
   filters: FilterState;
@@ -18,65 +17,70 @@ export function StatsOverview({ filters, sites, detections }: StatsOverviewProps
   });
 
   const totalAbundance = filteredSites.reduce((sum, site) => sum + site.abundance, 0);
-  const highPrioritySites = filteredSites.filter(site => site.priority === 'high').length;
+  const totalDetections = detections.length;
   const verifiedSites = filteredSites.filter(site => site.verificationStatus === 'verified').length;
   const avgConfidence = filteredSites.reduce((sum, site) => sum + site.confidence, 0) / filteredSites.length || 0;
 
   const stats = [
     {
-      icon: Bird,
-      label: 'Detected Colonies',
+      icon: Eye,
+      label: 'Avian Presence Detected',
       value: filteredSites.length,
-      subtext: `${totalAbundance.toLocaleString()} individuals`,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
+      subtext: `nesting colonies identified`,
+      color: 'text-white',
+      bgColor: 'bg-gradient-to-br from-blue-500 to-blue-700',
+      borderColor: 'border-blue-600',
+    },
+    {
+      icon: Bird,
+      label: 'Estimated Population',
+      value: totalAbundance.toLocaleString(),
+      subtext: `individual birds across ${filteredSites.length} sites`,
+      color: 'text-white',
+      bgColor: 'bg-gradient-to-br from-purple-500 to-purple-700',
+      borderColor: 'border-purple-600',
+    },
+    {
+      icon: Layers,
+      label: 'Total Detections',
+      value: totalDetections.toLocaleString(),
+      subtext: `AI-processed images`,
+      color: 'text-white',
+      bgColor: 'bg-gradient-to-br from-teal-500 to-teal-700',
+      borderColor: 'border-teal-600',
     },
     {
       icon: CheckCircle,
-      label: 'Verified',
+      label: 'Verified Colonies',
       value: verifiedSites,
-      subtext: `${((verifiedSites / filteredSites.length) * 100 || 0).toFixed(0)}% confirmed`,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-    },
-    {
-      icon: MapPin,
-      label: 'Active Sites',
-      value: filteredSites.length,
-      subtext: 'nesting colonies',
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-    },
-    {
-      icon: AlertCircle,
-      label: 'High Priority',
-      value: highPrioritySites,
-      subtext: 'conservation sites',
-      color: 'text-red-600',
-      bgColor: 'bg-red-50',
+      subtext: `${((verifiedSites / filteredSites.length) * 100 || 0).toFixed(0)}% validation rate`,
+      color: 'text-white',
+      bgColor: 'bg-gradient-to-br from-green-500 to-green-700',
+      borderColor: 'border-green-600',
     },
     {
       icon: TrendingUp,
       label: 'AI Confidence',
       value: `${(avgConfidence * 100).toFixed(1)}%`,
-      subtext: 'detection accuracy',
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
+      subtext: 'average detection accuracy',
+      color: 'text-white',
+      bgColor: 'bg-gradient-to-br from-orange-500 to-orange-700',
+      borderColor: 'border-orange-600',
     },
   ];
 
   return (
-    <div className="bg-white border-b border-gray-200 px-6 py-4">
-      <div className="grid grid-cols-4 gap-4">
+    <div className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200 px-6 py-6">
+      <div className="grid grid-cols-5 gap-4">
         {stats.map((stat, index) => (
-          <div key={index} className="flex items-center gap-3">
-            <div className={`p-3 rounded-lg ${stat.bgColor}`}>
-              <stat.icon className={`w-5 h-5 ${stat.color}`} />
+          <div key={index} className={`${stat.bgColor} ${stat.borderColor} border-2 rounded-xl shadow-lg p-4 transform transition-all hover:scale-105 hover:shadow-xl`}>
+            <div className="flex items-start justify-between mb-3">
+              <stat.icon className={`w-8 h-8 ${stat.color}`} />
             </div>
-            <div>
-              <div className="text-sm text-gray-600">{stat.label}</div>
-              <div className="font-semibold text-xl">{stat.value}</div>
-              <div className="text-xs text-gray-500">{stat.subtext}</div>
+            <div className={stat.color}>
+              <div className="text-xs font-semibold uppercase tracking-wide opacity-90 mb-1">{stat.label}</div>
+              <div className="font-bold text-3xl mb-1">{typeof stat.value === 'number' ? stat.value.toLocaleString() : stat.value}</div>
+              <div className="text-xs opacity-80">{stat.subtext}</div>
             </div>
           </div>
         ))}

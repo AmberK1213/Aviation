@@ -1,3 +1,16 @@
+export interface BoundingBox {
+  xmin: number;
+  ymin: number;
+  xmax: number;
+  ymax: number;
+}
+
+export interface DetectionInfo {
+  species: string;
+  confidence: number;
+  boundingBox: BoundingBox;
+}
+
 export interface NestingSite {
   id: string;
   lat: number;
@@ -11,6 +24,9 @@ export interface NestingSite {
   verificationStatus: 'verified' | 'needs-review' | 'unverified';
   detectionType: 'nest-colony' | 'individual-nests' | 'roosting-site';
   imageId?: string;
+  debugImagePath?: string;
+  detectionCount: number;
+  detections: DetectionInfo[];
 }
 
 export interface FilterState {

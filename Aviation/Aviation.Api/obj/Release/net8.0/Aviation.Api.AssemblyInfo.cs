@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aviation.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ee0b2e0dbc103f3820dbe3b5106878447a241cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+141824af3552591df93c666c840f482c703767de")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aviation.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aviation.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
