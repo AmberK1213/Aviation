@@ -1,5 +1,5 @@
 import { Bird, TrendingUp, MapPin } from 'lucide-react';
-import { FilterState, NestingSite } from '../App';
+import { FilterState, NestingSite } from '../types';
 import { nestingSites, getSpeciesColor } from '../data/mockData';
 
 interface SpeciesPanelProps {
@@ -32,7 +32,7 @@ export function SpeciesPanel({ filters, onSiteSelect }: SpeciesPanelProps) {
     return acc;
   }, {} as Record<string, { species: string; totalAbundance: number; siteCount: number; sites: NestingSite[] }>);
 
-  const sortedSpecies = Object.values(speciesSummary).sort(
+  const sortedSpecies = (Object.values(speciesSummary) as Array<{ species: string; totalAbundance: number; siteCount: number; sites: NestingSite[] }>).sort(
     (a, b) => b.totalAbundance - a.totalAbundance
   );
 

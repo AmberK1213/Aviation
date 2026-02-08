@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, Circle } from 'lucide-react';
-import { NestingSite, FilterState } from '../App';
-import { nestingSites, getPriorityColor } from '../data/mockData';
+import { NestingSite, FilterState, Detection } from '../types';
+import { getPriorityColor } from '../data/mockData';
 
 interface MapViewProps {
   filters: FilterState;
   selectedSite: NestingSite | null;
   onSiteSelect: (site: NestingSite | null) => void;
+  sites: NestingSite[];
+  detections: Detection[];
 }
 
-export function MapView({ filters, selectedSite, onSiteSelect }: MapViewProps) {
+export function MapView({ filters, selectedSite, onSiteSelect, sites, detections }: MapViewProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [hoveredSite, setHoveredSite] = useState<string | null>(null);
 
-  const filteredSites = nestingSites.filter(site => {
+  const filteredSites = sites.filter(site => {
     if (filters.species.length > 0 && !filters.species.includes(site.species)) return false;
     if (filters.habitat.length > 0 && !filters.habitat.includes(site.habitat)) return false;
     if (filters.priority.length > 0 && !filters.priority.includes(site.priority)) return false;
@@ -152,7 +154,7 @@ export function MapView({ filters, selectedSite, onSiteSelect }: MapViewProps) {
           </div>
         </div>
         <div className="mt-3 pt-3 border-t border-gray-200 text-xs text-gray-600">
-          <p>Showing {filteredSites.length} of {nestingSites.length} nesting sites</p>
+          <p>Showing {filteredSites.length} of {sites.length} nesting sites</p>
         </div>
       </div>
 

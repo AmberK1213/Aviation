@@ -12,21 +12,21 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c3cc20b8-c3ec-453c-ab58-db9b6587a5c8")]
-[assembly: System.Reflection.AssemblyMetadata("dcpclipath", "C:\\Users\\amber\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.0\\tools\\d" +
-    "cp.exe")]
-[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", "C:\\Users\\amber\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.0\\tools\\e" +
-    "xt\\")]
-[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", "C:\\Users\\amber\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\9.5.0\\tools\\e" +
-    "xt\\bin\\")]
+[assembly: System.Reflection.AssemblyMetadata("dcpclipath", "C:\\Users\\amber\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.1.0\\tools\\" +
+    "dcp.exe")]
+[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", "C:\\Users\\amber\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.1.0\\tools\\" +
+    "ext\\")]
+[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", "C:\\Users\\amber\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.1.0\\tools\\" +
+    "ext\\bin\\")]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation")]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "Aviation.csproj")]
-[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", "C:\\Users\\amber\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\9.5.0\\tools\\Aspire.Da" +
-    "shboard.exe")]
+[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", "C:\\Users\\amber\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\13.1.0\\tools\\Aspire.D" +
+    "ashboard.exe")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation\\obj\\")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aviation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ee0b2e0dbc103f3820dbe3b5106878447a241cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+141824af3552591df93c666c840f482c703767de")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aviation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aviation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
