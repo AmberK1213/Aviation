@@ -17,5 +17,5 @@ public class Aviation
     /// <summary>
     /// The path to the Aspire Host project.
     /// </summary>
-    public static string ProjectPath => """C:\Users\amber\source\repos\Aviation\Aviation\Aviation""";
+    public static string ProjectPath => """C:\Users\stewa\Source\Repos\Aviation\Aviation\Aviation""";
 }

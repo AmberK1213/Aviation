@@ -15,7 +15,7 @@ public class Aviation_Api : global::Aspire.Hosting.IProjectMetadata
     /// <summary>
     /// The path to the Aviation_Api project.
     /// </summary>
-    public string ProjectPath => """C:\Users\amber\source\repos\Aviation\Aviation\Aviation.Api\Aviation.Api.csproj""";
+    public string ProjectPath => """C:\Users\stewa\Source\Repos\Aviation\Aviation\Aviation.Api\Aviation.Api.csproj""";
 
     /// <summary>
     /// Gets a value indicating whether building the project before running it should be suppressed.
