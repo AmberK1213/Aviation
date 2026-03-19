@@ -10,7 +10,7 @@ interface MapViewProps {
   sites?: NestingSite[];
 }
 
-export function MapView({ filters, selectedSite, onSiteSelect, sites = mockSites }: MapViewProps) {
+export function MapView({ filters, selectedSite, onSiteSelect, sites, detections }: MapViewProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [hoveredSite, setHoveredSite] = useState<string | null>(null);
 

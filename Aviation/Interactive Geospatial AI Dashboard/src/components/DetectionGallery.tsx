@@ -21,10 +21,33 @@ export function DetectionGallery({ filters, onSiteSelect, sites = mockSites, det
     if (filters.species.length > 0 && !filters.species.includes(site.species)) return false;
     if (filters.habitat.length > 0 && !filters.habitat.includes(site.habitat)) return false;
     if (filters.priority.length > 0 && !filters.priority.includes(site.priority)) return false;
-    if (site.abundance < filters.minAbundance) return false;
     if (filters.verificationStatus.length > 0 && !filters.verificationStatus.includes(site.verificationStatus)) return false;
+    if (site.abundance < filters.minAbundance) return false;
     return true;
   });
+
+  const currentSite = filteredSites[currentImageIndex];
+  
+  // Get debug image path from API or construct fallback
+  const currentImagePath = currentSite?.debugImagePath 
+    ? `https://localhost:7039${currentSite.debugImagePath}`
+    : currentSite?.imageId 
+      ? `https://localhost:7039/images/debug/${currentSite.imageId}_debug.jpg`
+      : '';
+  
+  const goToNextImage = () => {
+    if (currentImageIndex < filteredSites.length - 1) {
+      setCurrentImageIndex(currentImageIndex + 1);
+      setImageError(false);
+    }
+  };
+
+  const goToPreviousImage = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(currentImageIndex - 1);
+      setImageError(false);
+    }
+  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -80,7 +103,7 @@ export function DetectionGallery({ filters, onSiteSelect, sites = mockSites, det
       <div className="mb-6">
         <h2 className="font-semibold text-xl mb-2">AI Detection Results</h2>
         <p className="text-sm text-gray-600 mb-4">
-          YOLOv8 detects birds in aerial imagery â€¢ Species classification via Gemini 2.5 Flash
+          YOLOv8 detects birds in aerial imagery • Species classification via Gemini 2.5 Flash
         </p>
 
         <div className="grid grid-cols-3 gap-4">
@@ -209,7 +232,7 @@ export function DetectionGallery({ filters, onSiteSelect, sites = mockSites, det
                 </div>
                 <div className="text-xs text-gray-600 flex items-center gap-1">
                   <MapPin className="w-3 h-3" />
-                  {site.lat.toFixed(4)}Â°N, {Math.abs(site.lng).toFixed(4)}Â°W
+                  {site.lat.toFixed(4)}°N, {Math.abs(site.lng).toFixed(4)}°W
                 </div>
               </div>
             </div>
@@ -236,20 +259,20 @@ export function DetectionGallery({ filters, onSiteSelect, sites = mockSites, det
               Neural network scans aerial imagery to identify potential nesting colonies based on visual patterns, clustering, and habitat context.
             </p>
           </div>
-          <div>
-            <div className="font-medium text-blue-900 mb-1">2. Species Prediction</div>
-            <p className="text-blue-800">
-              AI suggests species based on nest structure, habitat type, geographic location, and historical data with confidence scoring.
-            </p>
-          </div>
-          <div>
-            <div className="font-medium text-blue-900 mb-1">3. Expert Verification</div>
-            <p className="text-blue-800">
-              Wildlife biologists and citizen scientists review predictions to confirm species identification and validate counts.
+        </div>
+      ) : (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <Camera className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+            <h3 className="font-medium text-gray-900 mb-2">No Detections Found</h3>
+            <p className="text-gray-600 text-sm">
+              {sites.length === 0 
+                ? 'No detection data available from the API'
+                : 'Try adjusting your filters to see detected colonies'}
             </p>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

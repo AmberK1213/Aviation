@@ -1,3 +1,5 @@
+using Aspire.Hosting.Postgres;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var api = builder.AddProject<Projects.Aviation_Api>("aviation-api");

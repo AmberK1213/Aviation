@@ -1,4 +1,5 @@
 using Aviation.Application.Dtos.Ai;
+using Aviation.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -12,7 +13,7 @@ public class SiteController : ControllerBase
     private readonly IWebHostEnvironment _env;
 
     private static readonly Dictionary<string, (double Lat, double Lng)> SiteCoordinates = new()
-    {
+{
         { "QueenBess",            (29.304305, -89.9592032) },
         { "QueenBessIsland",      (29.304305, -89.9592032) },
         { "HalfMoonIsland",       (30.1375755, -89.4352027) },
@@ -24,19 +25,19 @@ public class SiteController : ControllerBase
     public SiteController(IWebHostEnvironment env)
     {
         _env = env;
-    }
+}
 
     // GET /api/sites/surveys — full ecological analysis
     [HttpGet("surveys")]
     public async Task<IActionResult> GetSurveys()
-    {
+{
         var path = Path.Combine(_env.ContentRootPath, "outputs", "analysis", "final_analysis.json");
         if (!System.IO.File.Exists(path))
             return NotFound("final_analysis.json not found");
 
         var json = await System.IO.File.ReadAllTextAsync(path);
         var analysis = JsonSerializer.Deserialize<EcologicalAnalysisDto>(json, new JsonSerializerOptions
-        {
+    {
             PropertyNameCaseInsensitive = true
         });
 
@@ -50,10 +51,10 @@ public class SiteController : ControllerBase
         var path = Path.Combine(_env.ContentRootPath, "outputs", "analysis", "final_analysis.json");
         if (!System.IO.File.Exists(path))
             return NotFound("final_analysis.json not found");
-
+        
         var json = await System.IO.File.ReadAllTextAsync(path);
         var analysis = JsonSerializer.Deserialize<EcologicalAnalysisDto>(json, new JsonSerializerOptions
-        {
+            {
             PropertyNameCaseInsensitive = true
         });
 
@@ -110,7 +111,7 @@ public class SiteController : ControllerBase
         var analysisPath = Path.Combine(_env.ContentRootPath, "outputs", "analysis", "final_analysis.json");
         var dateSiteMap = new Dictionary<string, string>();
         if (System.IO.File.Exists(analysisPath))
-        {
+                {
             var analysisJson = await System.IO.File.ReadAllTextAsync(analysisPath);
             var analysis = JsonSerializer.Deserialize<EcologicalAnalysisDto>(analysisJson,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -127,7 +128,7 @@ public class SiteController : ControllerBase
                 var items = JsonSerializer.Deserialize<JsonElement[]>(raw) ?? [];
                 var date = ParseDateFromFilename(filename);
                 dateSiteMap.TryGetValue(date, out var site);
-
+                
                 return new
                 {
                     Id = (i + 1).ToString(),
@@ -140,7 +141,7 @@ public class SiteController : ControllerBase
             })
             .OrderByDescending(x => x.BirdCount)
             .ToList();
-
+            
         return Ok(detections);
     }
 
@@ -153,14 +154,14 @@ public class SiteController : ControllerBase
         var day = int.Parse(match.Groups[1].Value);
         var monthStr = char.ToUpper(match.Groups[2].Value[0]) + match.Groups[2].Value[1..].ToLower();
         var year = "20" + match.Groups[3].Value;
-
+        
         string[] months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         var monthIdx = Array.IndexOf(months, monthStr) + 1;
         return monthIdx == 0 ? "Unknown" : $"{year}-{monthIdx:D2}-{day:D2}";
     }
 
     private static string MapHabitat(string? description)
-    {
+        {
         if (description == null) return "Barrier Island";
         var d = description.ToLower();
         if (d.Contains("marsh")) return "Coastal Marsh";
@@ -172,13 +173,13 @@ public class SiteController : ControllerBase
     }
 
     private static double MapConfidence(string confidence) => confidence switch
-    {
+        {
         "high"   => 0.90,
         "medium" => 0.70,
         "low"    => 0.50,
         _        => 0.60,
-    };
-
+        };
+        
     private static string MapDetectionType(string populationType) => populationType switch
     {
         "nesting_colony"      => "nest-colony",

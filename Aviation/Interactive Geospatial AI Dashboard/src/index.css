@@ -1782,3 +1782,19 @@ html {
     opacity: .5;
   }
 }
+
+/* Custom light theme styles */
+html, body {
+  background-color: #ffffff; /* white */
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: #ffffff; /* white */
+}
