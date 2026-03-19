@@ -54,3 +54,5 @@
 /Aviation/Aviation.Api/obj/project.assets.json
 /Aviation/Aviation.Api/obj/project.nuget.cache
 node_modules
+/Aviation/outputs/visuals
+/Aviation/Aviation/obj/Debug/net8.0/AppSettingsSchema.json
