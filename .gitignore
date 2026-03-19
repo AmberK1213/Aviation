@@ -71,3 +71,8 @@ node_modules
 /Aviation/outputs/visuals/
 /Aviation/Aviation/obj/Debug/net8.0/Aviation.csproj.AssemblyReference.cache
 /Aviation/Aviation.Api/obj/Debug/net8.0/Aviation.Api.assets.cache
+/Aviation/Aviation/obj/Debug/net8.0/Aspire/references/Aviation_Api.ProjectMetadata.g.cs
+/Aviation/Aviation/obj/Debug/net8.0/Aspire/references/_AppHost.ProjectMetadata.g.cs
+/Aviation/Aviation/obj/Debug/net8.0/CombinedComponentSchema.json
+/Aviation/Aviation/obj/Aviation.csproj.nuget.g.props
+/Aviation/Aviation/obj/Aviation.csproj.nuget.g.targets
