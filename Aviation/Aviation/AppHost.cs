@@ -1,5 +1,10 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.Aviation_Api>("aviation-api");
+var api = builder.AddProject<Projects.Aviation_Api>("aviation-api");
+
+builder.AddNpmApp("aviation-frontend", "../Interactive Geospatial AI Dashboard", "dev")
+    .WithReference(api)
+    .WithHttpEndpoint(env: "PORT")
+    .WithExternalHttpEndpoints();
 
 builder.Build().Run();

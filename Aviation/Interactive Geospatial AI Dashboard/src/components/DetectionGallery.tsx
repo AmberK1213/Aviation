@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import { FilterState, NestingSite } from '../App';
-import { nestingSites } from '../data/mockData';
-import { Camera, CheckCircle, AlertCircle, HelpCircle, MapPin, Maximize2 } from 'lucide-react';
+import { Detection } from '../services/apiService';
+import { nestingSites as mockSites } from '../data/mockData';
+import { Camera, AlertCircle, CheckCircle, HelpCircle, MapPin, Maximize2, Bird } from 'lucide-react';
 
 interface DetectionGalleryProps {
   filters: FilterState;
   onSiteSelect: (site: NestingSite) => void;
+  sites?: NestingSite[];
+  detections?: Detection[];
 }
 
-export function DetectionGallery({ filters, onSiteSelect }: DetectionGalleryProps) {
+export function DetectionGallery({ filters, onSiteSelect, sites = mockSites, detections = [] }: DetectionGalleryProps) {
   const [selectedDetection, setSelectedDetection] = useState<NestingSite | null>(null);
+  const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
 
-  const filteredSites = nestingSites.filter(site => {
+  const usingDetections = detections.length > 0;
+
+  const filteredSites = sites.filter(site => {
     if (filters.species.length > 0 && !filters.species.includes(site.species)) return false;
     if (filters.habitat.length > 0 && !filters.habitat.includes(site.habitat)) return false;
     if (filters.priority.length > 0 && !filters.priority.includes(site.priority)) return false;
@@ -53,161 +59,170 @@ export function DetectionGallery({ filters, onSiteSelect }: DetectionGalleryProp
     }
   };
 
+  const totalCount = usingDetections ? detections.length : filteredSites.length;
+  const totalBirds = usingDetections
+    ? detections.reduce((s, d) => s + d.birdCount, 0)
+    : filteredSites.reduce((s, site) => s + site.abundance, 0);
+
   return (
     <div className="p-6">
-      {/* Header Section */}
+      {/* Lightbox */}
+      {lightboxUrl && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
+          onClick={() => setLightboxUrl(null)}
+        >
+          <img src={lightboxUrl} className="max-h-[90vh] max-w-[90vw] rounded shadow-2xl" alt="Detection" />
+        </div>
+      )}
+
+      {/* Header */}
       <div className="mb-6">
         <h2 className="font-semibold text-xl mb-2">AI Detection Results</h2>
         <p className="text-sm text-gray-600 mb-4">
-          Neural network identifies potential nesting colonies from aerial imagery • Species classification requires verification
+          YOLOv8 detects birds in aerial imagery • Species classification via Gemini 2.5 Flash
         </p>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <div className="text-sm text-gray-600 mb-1">Total Detections</div>
-            <div className="font-semibold text-2xl">{filteredSites.length}</div>
+            <div className="text-sm text-gray-600 mb-1">Images Processed</div>
+            <div className="font-semibold text-2xl">{totalCount.toLocaleString()}</div>
           </div>
-          <div className="bg-green-50 rounded-lg border border-green-200 p-4">
+          <div className="bg-blue-50 rounded-lg border border-blue-200 p-4">
             <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-              <CheckCircle className="w-3 h-3" />
-              Verified
+              <Bird className="w-3 h-3" />
+              Birds Detected
             </div>
-            <div className="font-semibold text-2xl text-green-700">
-              {filteredSites.filter(s => s.verificationStatus === 'verified').length}
-            </div>
+            <div className="font-semibold text-2xl text-blue-700">{totalBirds.toLocaleString()}</div>
           </div>
           <div className="bg-amber-50 rounded-lg border border-amber-200 p-4">
             <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
               <AlertCircle className="w-3 h-3" />
-              Needs Review
+              Pending Review
             </div>
-            <div className="font-semibold text-2xl text-amber-700">
-              {filteredSites.filter(s => s.verificationStatus === 'needs-review').length}
-            </div>
-          </div>
-          <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
-            <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-              <HelpCircle className="w-3 h-3" />
-              Unverified
-            </div>
-            <div className="font-semibold text-2xl text-gray-700">
-              {filteredSites.filter(s => s.verificationStatus === 'unverified').length}
-            </div>
+            <div className="font-semibold text-2xl text-amber-700">{totalCount.toLocaleString()}</div>
           </div>
         </div>
       </div>
 
-      {/* Detection Cards Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-        {filteredSites.map(site => (
-          <div
-            key={site.id}
-            className="bg-white rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 overflow-hidden cursor-pointer"
-            onClick={() => {
-              setSelectedDetection(site);
-              onSiteSelect(site);
-            }}
-          >
-            {/* Mock Aerial Image */}
-            <div className="relative h-48 bg-gradient-to-br from-blue-100 via-green-50 to-amber-50">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Camera className="w-16 h-16 text-gray-300" />
-              </div>
-              
-              {/* Detection overlay */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="border-2 border-red-500 rounded-full w-24 h-24 animate-pulse"></div>
+      {/* Detection image cards (from API) */}
+      {usingDetections && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+          {detections.map(detection => (
+            <div
+              key={detection.id}
+              className="bg-white rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 overflow-hidden"
+            >
+              {/* Annotated image */}
+              <div className="relative h-48 bg-gray-900 overflow-hidden">
+                <img
+                  src={detection.imageUrl}
+                  alt={detection.filename}
+                  className="w-full h-full object-cover cursor-zoom-in"
+                  onClick={() => setLightboxUrl(detection.imageUrl)}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
+                />
+                <div className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded font-mono">
+                  {detection.filename.split('Camera')[0]}
+                </div>
+                <div className="absolute top-2 right-2 bg-blue-600/90 text-white text-xs px-2 py-1 rounded font-semibold">
+                  {detection.birdCount} birds
+                </div>
+                <button
+                  className="absolute bottom-2 right-2 bg-white/90 hover:bg-white p-1.5 rounded shadow"
+                  onClick={() => setLightboxUrl(detection.imageUrl)}
+                >
+                  <Maximize2 className="w-4 h-4 text-gray-700" />
+                </button>
               </div>
 
-              {/* Image metadata */}
-              <div className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                IMG_{site.imageId || `${site.id.padStart(6, '0')}`}
+              {/* Card info */}
+              <div className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-medium text-gray-900">{detection.siteName}</span>
+                  <span className="px-2 py-0.5 rounded-full text-xs bg-amber-100 text-amber-700 border border-amber-200">
+                    AI Detected
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 text-xs text-gray-500">
+                  <MapPin className="w-3 h-3" />
+                  {new Date(detection.surveyDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </div>
               </div>
-              
-              {/* Confidence score */}
-              <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                {(site.confidence * 100).toFixed(0)}% confidence
-              </div>
-
-              {/* Expand button */}
-              <button className="absolute bottom-2 right-2 bg-white/90 hover:bg-white p-1.5 rounded shadow">
-                <Maximize2 className="w-4 h-4 text-gray-700" />
-              </button>
             </div>
+          ))}
+        </div>
+      )}
 
-            {/* Detection Info */}
-            <div className="p-4">
-              {/* Status and Type */}
-              <div className="flex items-center gap-2 mb-3">
-                <span className={`px-2 py-1 rounded text-xs font-medium border ${getStatusBadge(site.verificationStatus)}`}>
-                  {getStatusIcon(site.verificationStatus)}
-                  <span className="ml-1 capitalize">{site.verificationStatus.replace('-', ' ')}</span>
-                </span>
-                <span className={`px-2 py-1 rounded text-xs font-medium ${getDetectionTypeBadge(site.detectionType)}`}>
-                  {site.detectionType.replace('-', ' ')}
-                </span>
-              </div>
-
-              {/* Species Identification */}
-              <div className="mb-3">
-                <div className="text-xs text-gray-500 mb-1">Predicted Species</div>
-                <div className="font-semibold text-base flex items-center justify-between">
-                  <span>{site.species}</span>
-                  {site.verificationStatus !== 'verified' && (
-                    <span className="text-xs text-amber-600 font-normal">Unconfirmed</span>
-                  )}
+      {/* Mock site cards (fallback when API unavailable) */}
+      {!usingDetections && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+          {filteredSites.map(site => (
+            <div
+              key={site.id}
+              className="bg-white rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 overflow-hidden cursor-pointer"
+              onClick={() => { setSelectedDetection(site); onSiteSelect(site); }}
+            >
+              <div className="relative h-48 bg-gradient-to-br from-blue-100 via-green-50 to-amber-50">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Camera className="w-16 h-16 text-gray-300" />
                 </div>
-              </div>
-
-              {/* Key Metrics */}
-              <div className="grid grid-cols-2 gap-3 mb-3">
-                <div className="bg-gray-50 rounded p-2">
-                  <div className="text-xs text-gray-600">Estimated Count</div>
-                  <div className="font-semibold">{site.abundance}</div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="border-2 border-red-500 rounded-full w-24 h-24 animate-pulse" />
                 </div>
-                <div className="bg-gray-50 rounded p-2">
-                  <div className="text-xs text-gray-600">Habitat Type</div>
-                  <div className="font-semibold text-sm">{site.habitat.split(' ')[0]}</div>
+                <div className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                  IMG_{site.imageId || site.id.padStart(6, '0')}
                 </div>
+                <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                  {(site.confidence * 100).toFixed(0)}% confidence
+                </div>
+                <button className="absolute bottom-2 right-2 bg-white/90 hover:bg-white p-1.5 rounded shadow">
+                  <Maximize2 className="w-4 h-4 text-gray-700" />
+                </button>
               </div>
 
-              {/* Location */}
-              <div className="text-xs text-gray-600 flex items-center gap-1">
-                <MapPin className="w-3 h-3" />
-                {site.lat.toFixed(4)}°N, {Math.abs(site.lng).toFixed(4)}°W
-              </div>
-
-              {/* Survey Date */}
-              <div className="text-xs text-gray-500 mt-2">
-                Detected: {new Date(site.lastSurveyed).toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'short', 
-                  day: 'numeric' 
-                })}
-              </div>
-
-              {/* Action needed banner */}
-              {site.verificationStatus === 'needs-review' && (
-                <div className="mt-3 pt-3 border-t border-gray-200">
-                  <div className="bg-amber-50 border border-amber-200 rounded p-2 text-xs text-amber-800">
-                    <strong>Action Required:</strong> Expert review needed for species confirmation
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`px-2 py-1 rounded text-xs font-medium border ${getStatusBadge(site.verificationStatus)}`}>
+                    {getStatusIcon(site.verificationStatus)}
+                    <span className="ml-1 capitalize">{site.verificationStatus.replace('-', ' ')}</span>
+                  </span>
+                  <span className={`px-2 py-1 rounded text-xs font-medium ${getDetectionTypeBadge(site.detectionType)}`}>
+                    {site.detectionType.replace('-', ' ')}
+                  </span>
+                </div>
+                <div className="mb-3">
+                  <div className="text-xs text-gray-500 mb-1">Predicted Species</div>
+                  <div className="font-semibold text-base">{site.species}</div>
+                </div>
+                <div className="grid grid-cols-2 gap-3 mb-3">
+                  <div className="bg-gray-50 rounded p-2">
+                    <div className="text-xs text-gray-600">Estimated Count</div>
+                    <div className="font-semibold">{site.abundance}</div>
+                  </div>
+                  <div className="bg-gray-50 rounded p-2">
+                    <div className="text-xs text-gray-600">Habitat Type</div>
+                    <div className="font-semibold text-sm">{site.habitat.split(' ')[0]}</div>
                   </div>
                 </div>
-              )}
+                <div className="text-xs text-gray-600 flex items-center gap-1">
+                  <MapPin className="w-3 h-3" />
+                  {site.lat.toFixed(4)}°N, {Math.abs(site.lng).toFixed(4)}°W
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* No Results */}
-      {filteredSites.length === 0 && (
+      {!usingDetections && filteredSites.length === 0 && (
         <div className="text-center py-12">
           <Camera className="w-16 h-16 mx-auto mb-4 text-gray-300" />
           <h3 className="font-medium text-gray-900 mb-2">No Detections Found</h3>
-          <p className="text-gray-600 text-sm">
-            Try adjusting your filters to see detected colonies
-          </p>
+          <p className="text-gray-600 text-sm">Try adjusting your filters to see detected colonies</p>
         </div>
       )}
 

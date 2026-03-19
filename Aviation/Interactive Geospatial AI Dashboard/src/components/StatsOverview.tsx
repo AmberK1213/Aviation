@@ -1,13 +1,14 @@
 import { Bird, TrendingUp, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
-import { FilterState } from '../App';
+import { FilterState, NestingSite } from '../App';
 import { nestingSites } from '../data/mockData';
 
 interface StatsOverviewProps {
   filters: FilterState;
+  sites?: NestingSite[];
 }
 
-export function StatsOverview({ filters }: StatsOverviewProps) {
-  const filteredSites = nestingSites.filter(site => {
+export function StatsOverview({ filters, sites = nestingSites }: StatsOverviewProps) {
+  const filteredSites = sites.filter(site => {
     if (filters.species.length > 0 && !filters.species.includes(site.species)) return false;
     if (filters.habitat.length > 0 && !filters.habitat.includes(site.habitat)) return false;
     if (filters.priority.length > 0 && !filters.priority.includes(site.priority)) return false;
@@ -66,9 +67,9 @@ export function StatsOverview({ filters }: StatsOverviewProps) {
 
   return (
     <div className="bg-white border-b border-gray-200 px-6 py-4">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="flex gap-6">
         {stats.map((stat, index) => (
-          <div key={index} className="flex items-center gap-3">
+          <div key={index} className="flex items-center gap-3 flex-1">
             <div className={`p-3 rounded-lg ${stat.bgColor}`}>
               <stat.icon className={`w-5 h-5 ${stat.color}`} />
             </div>

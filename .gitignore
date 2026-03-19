@@ -29,3 +29,13 @@
 /Aviation/Interactive Geospatial AI Dashboard/node_modules/.bin
 /Aviation/Interactive Geospatial AI Dashboard/node_modules
 /node_modules
+**/obj/Release/
+**/obj/Debug/
+**/bin/
+/Aviation/Aviation.Api/obj/project.assets.json
+/Aviation/Aviation.Api/obj/project.nuget.cache
+/Aviation/Aviation.Api/obj/Aviation.Api.csproj.nuget.dgspec.json
+/Aviation/Aviation/obj/project.assets.json
+/Aviation/Aviation/obj/project.nuget.cache
+/Aviation/Aviation/obj/Aviation.csproj.nuget.dgspec.json
+/Aviation/outputs/visuals/

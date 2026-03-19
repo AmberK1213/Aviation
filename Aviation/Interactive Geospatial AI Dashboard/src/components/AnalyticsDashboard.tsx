@@ -7,21 +7,29 @@ import { ConfidenceMetrics } from './analytics/ConfidenceMetrics';
 import { GeographicDistribution } from './analytics/GeographicDistribution';
 import { ConservationRecommendations } from './analytics/ConservationRecommendations';
 import { SpeciesCooccurrence } from './analytics/SpeciesCooccurrence';
+import { ClimateImpact } from './analytics/ClimateImpact';
 
 interface AnalyticsDashboardProps {
   filters: FilterState;
   onSiteSelect: (site: NestingSite) => void;
+  sites: NestingSite[];
+  surveyAnalysis: any;
 }
 
-export function AnalyticsDashboard({ filters, onSiteSelect }: AnalyticsDashboardProps) {
+export function AnalyticsDashboard({ filters, onSiteSelect, sites, surveyAnalysis }: AnalyticsDashboardProps) {
   return (
     <div className="p-6 space-y-6">
       {/* Top Row - Key Metrics */}
       <div className="grid grid-cols-3 gap-6">
-        <SpeciesDistribution filters={filters} />
+        <SpeciesDistribution filters={filters} sites={sites} />
         <TemporalTrends filters={filters} />
         <ConfidenceMetrics filters={filters} />
       </div>
+
+      {/* Climate & Habitat Row */}
+      {surveyAnalysis && (
+        <ClimateImpact surveyAnalysis={surveyAnalysis} />
+      )}
 
       {/* Second Row - Habitat & Priority Analysis */}
       <div className="grid grid-cols-2 gap-6">
