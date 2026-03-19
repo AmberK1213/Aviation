@@ -1505,6 +1505,27 @@
   --sidebar-ring: oklch(.439 0 0);
 }
 
+.map-legend-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.map-legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.map-legend-footer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #E5E7EB;
+  font-size: 12px;
+  color: #6B7280;
+}
+
 html {
   font-size: var(--font-size);
 }
