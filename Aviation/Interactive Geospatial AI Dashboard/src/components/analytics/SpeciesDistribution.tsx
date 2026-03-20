@@ -1,14 +1,15 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { FilterState } from '../../App';
-import { nestingSites, getSpeciesColor } from '../../data/mockData';
+import { FilterState, NestingSite } from '../../App';
+import { nestingSites as mockSites, getSpeciesColor } from '../../data/mockData';
 import { Bird } from 'lucide-react';
 
 interface SpeciesDistributionProps {
   filters: FilterState;
+  sites?: NestingSite[];
 }
 
-export function SpeciesDistribution({ filters }: SpeciesDistributionProps) {
-  const filteredSites = nestingSites.filter(site => {
+export function SpeciesDistribution({ filters, sites = mockSites }: SpeciesDistributionProps) {
+  const filteredSites = sites.filter(site => {
     if (filters.species.length > 0 && !filters.species.includes(site.species)) return false;
     if (filters.habitat.length > 0 && !filters.habitat.includes(site.habitat)) return false;
     if (filters.priority.length > 0 && !filters.priority.includes(site.priority)) return false;

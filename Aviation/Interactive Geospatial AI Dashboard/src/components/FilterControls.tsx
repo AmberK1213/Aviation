@@ -1,5 +1,6 @@
 import { Filter, X, Bird, CheckCircle } from 'lucide-react';
-import { FilterState, NestingSite, Detection } from '../types';
+import { FilterState, NestingSite } from '../App';
+import { Detection } from '../services/apiService';
 import { SPECIES, HABITATS } from '../data/mockData';
 
 interface FilterControlsProps {
