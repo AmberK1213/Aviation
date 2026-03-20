@@ -69,6 +69,8 @@ node_modules
 /Aviation/Aviation/obj/project.nuget.cache
 /Aviation/Aviation/obj/Aviation.csproj.nuget.dgspec.json
 /Aviation/outputs/visuals/
+*.env
+.env
 /Aviation/Aviation/obj/Debug/net8.0/Aviation.csproj.AssemblyReference.cache
 /Aviation/Aviation.Api/obj/Debug/net8.0/Aviation.Api.assets.cache
 /Aviation/Aviation/obj/Debug/net8.0/Aspire/references/Aviation_Api.ProjectMetadata.g.cs
