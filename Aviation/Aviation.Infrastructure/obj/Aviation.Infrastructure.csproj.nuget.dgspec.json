@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Infrastructure\\Aviation.Infrastructure.csproj": {}
+    "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Infrastructure\\Aviation.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj": {
+    "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj",
+        "projectUniqueName": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj",
         "projectName": "Aviation.Application",
-        "projectPath": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj",
-        "packagesPath": "C:\\Users\\stewa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Application\\obj\\",
+        "projectPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj",
+        "packagesPath": "C:\\Users\\amber\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\stewa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amber\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj": {
-                "projectPath": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj"
+              "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj": {
+                "projectPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj"
               }
             }
           }
@@ -48,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -69,24 +70,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj": {
+    "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj",
         "projectName": "Aviation.Domain",
-        "projectPath": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj",
-        "packagesPath": "C:\\Users\\stewa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Domain\\obj\\",
+        "projectPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Domain\\Aviation.Domain.csproj",
+        "packagesPath": "C:\\Users\\amber\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\stewa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amber\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -95,6 +96,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -113,7 +115,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -134,24 +136,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Infrastructure\\Aviation.Infrastructure.csproj": {
+    "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Infrastructure\\Aviation.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Infrastructure\\Aviation.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Infrastructure\\Aviation.Infrastructure.csproj",
         "projectName": "Aviation.Infrastructure",
-        "projectPath": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Infrastructure\\Aviation.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\stewa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Infrastructure\\Aviation.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\amber\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\stewa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amber\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -160,14 +162,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj": {
-                "projectPath": "C:\\Users\\stewa\\Source\\Repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj"
+              "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj": {
+                "projectPath": "C:\\Users\\amber\\source\\repos\\Aviation\\Aviation\\Aviation.Application\\Aviation.Application.csproj"
               }
             }
           }
@@ -182,7 +185,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -203,7 +206,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

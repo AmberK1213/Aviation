@@ -76,3 +76,14 @@ node_modules
 /Aviation/Aviation/obj/Debug/net8.0/CombinedComponentSchema.json
 /Aviation/Aviation/obj/Aviation.csproj.nuget.g.props
 /Aviation/Aviation/obj/Aviation.csproj.nuget.g.targets
+/Aviation/Aviation/obj/Debug/net8.0/Aviation.GeneratedMSBuildEditorConfig.editorconfig
+/Aviation/Aviation/obj/Debug/net8.0/Aviation.GlobalUsings.g.cs
+/Aviation/Aviation.Api/obj/Debug/net8.0/Aviation.Api.GeneratedMSBuildEditorConfig.editorconfig
+/Aviation/Aviation.Api/obj/Debug/net8.0/Aviation.Api.GlobalUsings.g.cs
+/Aviation/Aviation.Application/obj/Debug/net8.0/Aviation.Application.assets.cache
+/Aviation/Aviation.Application/obj/Debug/net8.0/Aviation.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Aviation/Aviation.Application/obj/Debug/net8.0/Aviation.Application.GlobalUsings.g.cs
+/Aviation/Aviation.Application/obj/Aviation.Application.csproj.nuget.dgspec.json
+/Aviation/Aviation.Application/obj/Aviation.Application.csproj.nuget.g.props
+/Aviation/Aviation.Application/obj/project.assets.json
+/Aviation/Aviation.Application/obj/project.nuget.cache

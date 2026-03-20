@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 namespace Aviation.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/sites")]
 public class SiteController : ControllerBase
 {
     private readonly IWebHostEnvironment _env;
@@ -74,6 +74,7 @@ public class SiteController : ControllerBase
                     Id = id++.ToString(),
                     Lat = coords.Lat,
                     Lng = coords.Lng,
+                    SiteName = survey.SiteName,
                     Species = cls.Species,
                     Abundance = abundance,
                     Priority = survey.OverallRiskLevel,
